@@ -10,7 +10,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
     def log_message(self, fmt, *args):
         pass  # suppress logs
 
-print(f"PyCoder サーバー起動: http://localhost:{PORT}")
+print(f"PyShrine サーバー起動: http://localhost:{PORT}")
 print("停止するには Ctrl+C を押してください")
 webbrowser.open(f"http://localhost:{PORT}")
 http.server.HTTPServer(("", PORT), Handler).serve_forever()
