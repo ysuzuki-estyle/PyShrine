@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PyCoder</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Pyodide -->
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js"></script>
+  <!-- Monaco loader -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.45.0/min/vs/loader.min.js"></script>
+</head>
+<body>
+
+<header class="header">
+  <div class="header-inner" style="max-width:100%;">
+    <a href="index.html" class="back-link">← 一覧</a>
+    <span id="problem-title" style="font-weight:600; font-size:15px;"></span>
+  </div>
+</header>
+
+<div class="editor-layout">
+
+  <!-- ── Left: Problem panel ── -->
+  <div class="problem-panel">
+    <!-- Result banner (shown after submit) -->
+    <div id="result-banner" class="result-banner"></div>
+
+    <div class="problem-tabs">
+      <div class="problem-tab active" data-tab="description">問題</div>
+      <div class="problem-tab" data-tab="results">テスト結果</div>
+    </div>
+
+    <!-- Tab: Description -->
+    <div class="problem-content">
+      <div id="tab-description" class="tab-pane active">
+        <div class="problem-title" id="prob-title"></div>
+        <div class="problem-meta">
+          <span id="prob-difficulty" class="difficulty-badge"></span>
+        </div>
+        <div class="problem-description" id="prob-description"></div>
+
+        <div class="section-title">例</div>
+        <div id="prob-examples"></div>
+
+        <div class="section-title">制約</div>
+        <ul class="constraints-list" id="prob-constraints"></ul>
+      </div>
+
+      <!-- Tab: Results -->
+      <div id="tab-results" class="tab-pane">
+        <div class="section-title">テスト結果</div>
+        <div class="test-result-list" id="test-results">
+          <div style="color:var(--text-muted); font-size:13px; padding:8px 0;">
+            「実行」または「提出」ボタンを押すと結果が表示されます
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Right: Editor panel ── -->
+  <div class="editor-panel">
+    <div class="editor-toolbar">
+      <span class="lang-badge">Python 3</span>
+      <span class="spacer"></span>
+      <div class="pyodide-status" id="pyodide-status">
+        <span class="dot"></span>
+        <span class="status-text">Python 読み込み中...</span>
+      </div>
+    </div>
+
+    <div id="monaco-editor"></div>
+
+    <div class="editor-actions">
+      <button class="btn btn-run"    id="btn-run"    disabled>▶ 実行</button>
+      <button class="btn btn-submit" id="btn-submit" disabled>提出</button>
+      <button class="btn btn-reset"  id="btn-reset">リセット</button>
+    </div>
+
+    <!-- Console -->
+    <div class="console-panel">
+      <div class="console-header">
+        <span class="console-title">コンソール</span>
+        <button class="console-clear" id="console-clear">クリア</button>
+      </div>
+      <div class="console-output" id="console-output"></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/problems.js"></script>
+<script src="js/editor.js"></script>
+</body>
+</html>
