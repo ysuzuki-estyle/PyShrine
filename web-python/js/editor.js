@@ -160,11 +160,11 @@ async function runTests(mode) {
     const output = JSON.parse(raw);
 
     if (output.stdout) log(output.stdout.trimEnd(), 'info');
-    if (output.syntaxError) { log(output.syntaxError, 'error'); renderError(testCases, output.syntaxError); }
-    else if (output.runtimeError) { log(output.runtimeError.trim(), 'error'); renderError(testCases, output.runtimeError); }
+    if (output.syntaxError) { log(output.syntaxError, 'error'); renderError(output.syntaxError); }
+    else if (output.runtimeError) { log(output.runtimeError.trim(), 'error'); renderError(output.runtimeError); }
     else {
       const results = output.results || [];
-      renderResults(results, mode);
+      renderResults(results);
       const allPass = results.every(r => r.passed);
       if (mode === 'submit') {
         if (allPass) {
@@ -205,7 +205,7 @@ function renderPending(testCases) {
   });
 }
 
-function renderResults(results, mode) {
+function renderResults(results) {
   const container = document.getElementById('test-results');
   container.innerHTML = '';
   results.forEach(r => {
@@ -234,7 +234,7 @@ function renderResults(results, mode) {
   });
 }
 
-function renderError(testCases, msg) {
+function renderError(msg) {
   const container = document.getElementById('test-results');
   container.innerHTML = `
     <div class="test-result-item fail">
@@ -323,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Header
   document.getElementById('problem-title').textContent  = `${problem.id}. ${problem.title}`;
-  document.title = `${problem.id}. ${problem.title} — PyCoder`;
+  document.title = `${problem.id}. ${problem.title} — PyShrine`;
 
   // Description
   document.getElementById('prob-title').textContent = `${problem.id}. ${problem.title}`;
